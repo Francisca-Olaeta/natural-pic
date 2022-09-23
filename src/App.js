@@ -10,8 +10,7 @@ import React, { useEffect, useState } from "react";
 
 export default function App() {
   const [fotos, setFotos] = useState([]);
-  const [favoritos, setFavoritos] = useState(false);
-  const sharedState = {fotos, setFotos, favoritos, setFavoritos};
+  const sharedState = {fotos, setFotos};
   const endpoint = "/fotos.json";
 
 
@@ -19,7 +18,15 @@ export default function App() {
 const getInfo = async () => {
   const response = await fetch(endpoint);
   const data = await response.json();
-  setFotos(data);
+  let dataFiltrada = data.photos.map((e)=> ({
+    id: e.id,
+    src: e.src.tiny,
+    alt: e.alt,
+    liked: e.liked,
+    photographer: e.photographer
+  }))
+  setFotos(dataFiltrada);
+  console.log(dataFiltrada)
 }
 
 //Llamar a la función

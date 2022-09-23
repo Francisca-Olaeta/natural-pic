@@ -5,7 +5,7 @@ import { useContext } from "react";
 export default function Home() {
   return (
     <div id="Home">
-      <h1>Natural Pic</h1>
+      <h1 className="title">Natural Pic</h1>
 
       <Galeria />
     </div>
